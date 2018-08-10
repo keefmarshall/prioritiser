@@ -21,7 +21,8 @@ export class AppComponent {
     "Avoiding vendor lock-in",
     "White-label branding",
     "Mobile apps",
-    "APIs for 3rd parties"
+    "APIs for 3rd parties",
+    "Low running costs"
   ];
 
   constructor(public pointsService: PointsService) {
