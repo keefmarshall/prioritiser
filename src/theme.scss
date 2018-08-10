@@ -1,0 +1,23 @@
+@import '~@angular/material/theming';
+
+@import 'style/lightorange-palette';
+@import 'style/teal-palette';
+
+@include mat-core();
+
+// CORE THEME - DEEP BLUE / MID BLUE
+$primary: mat-palette($md-teal, 500);
+$accent:  mat-palette($md-lightorange, 600, 100, 800);
+$warn:    mat-palette($mat-red, 600);
+$theme:   mat-light-theme($primary, $accent, $warn);
+@include angular-material-theme($theme);
+
+// // ALT THEME - GREEN / PINK
+// $alt-buprimary: mat-palette($md-babygreen, 500);
+// $alt-buaccent:  mat-palette($md-babypink, 600, 100, 800);
+// $alt-warn:    mat-palette($mat-red, 600);
+// $alt-theme:   mat-light-theme($alt-buprimary, $alt-buaccent, $alt-warn);
+// .alt-theme {
+//     @include angular-material-theme($alt-theme);
+// }
+
