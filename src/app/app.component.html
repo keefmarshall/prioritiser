@@ -1,15 +1,46 @@
 <mat-toolbar color="primary">
-  <span>Hello</span>
+  <span>Prioritiser</span>
 </mat-toolbar>
 
-<div>Assigned points: {{ pointsService.total() }}</div>
+<div fxLayout="row" fxLayout.xs="column" fxLayoutWrap="wrap" fxLayoutGap="20px" class="main-content">
 
-<mat-card>
-  <table>
-    <tr *ngFor="let cat of pointsService.categories()">
-      <th>{{cat}}</th>
-      <td><app-pslider category="{{cat}}"></app-pslider></td>
-    </tr>
-  </table>
-</mat-card>
+  <div fxFlex="65%">
+    <mat-card>
+      <table>
+        <tr *ngFor="let cat of pointsService.categories()">
+          <th>{{cat}}</th>
+          <td><app-pslider category="{{cat}}"></app-pslider></td>
+        </tr>
+      </table>
+    </mat-card>
+  </div>
 
+  <div fxLayout="column" fxFlex="35%">
+    <div fxFlex="30">
+        <mat-card><app-pbar></app-pbar></mat-card>
+    </div>
+
+    <div fxFlex="35">
+      <mat-card>
+        <mat-card-title>Prioritised</mat-card-title>
+        <ul>
+          <li *ngFor="let cat of pointsService.prioritised()">
+            {{ cat }}
+          </li>
+        </ul>
+      </mat-card>
+    </div>
+
+    <div fxFlex="35">
+      <mat-card>
+        <mat-card-title>De-prioritised</mat-card-title>
+        <ul>
+          <li *ngFor="let cat of pointsService.deprioritised()">
+            {{ cat }}
+          </li>
+        </ul>
+      </mat-card>
+    </div>
+  </div>
+
+</div>

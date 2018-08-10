@@ -5,16 +5,19 @@ import { NgModule } from '@angular/core';
 import { AppComponent } from './app.component';
 import { MdesignModule } from './mdesign/mdesign.module';
 import { PsliderComponent } from './pslider/pslider.component';
-import { PointsService } from './services/points.service';
+import { FlexLayoutModule } from '@angular/flex-layout';
+import { PbarComponent } from './pbar/pbar.component';
 
 @NgModule({
   declarations: [
     AppComponent,
-    PsliderComponent
+    PsliderComponent,
+    PbarComponent
   ],
   imports: [
     BrowserModule,
     BrowserAnimationsModule,
+    FlexLayoutModule,
     MdesignModule
   ],
   providers: [],

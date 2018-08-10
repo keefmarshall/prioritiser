@@ -9,7 +9,24 @@ import { PointsService } from './services/points.service';
 export class AppComponent {
   title = 'priorites';
 
-  constructor(public pointsService: PointsService) { 
-    pointsService.addCategory("test");
+  private all_categories: string[] = [
+    "Stability",
+    "Scalability",
+    "Performance / Speed",
+    "Polished look and feel",
+    "User experience",
+    "Number of features",
+    "Ease of adding new features",
+    "Security",
+    "Avoiding vendor lock-in",
+    "White-label branding",
+    "Mobile apps",
+    "APIs for 3rd parties"
+  ];
+
+  constructor(public pointsService: PointsService) {
+    this.all_categories.forEach(cat =>
+      this.pointsService.addCategory(cat)
+    )
   }
 }

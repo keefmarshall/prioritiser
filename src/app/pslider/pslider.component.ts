@@ -15,6 +15,6 @@ export class PsliderComponent implements OnInit {
   }
 
   valueChange(event: any) {
-    this.pointsService.points[this.category] = event.value;
+    this.pointsService.setPoints(this.category, event.value);
   }
 }
