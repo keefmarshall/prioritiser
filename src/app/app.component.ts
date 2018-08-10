@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { PointsService } from './services/points.service';
 
 @Component({
   selector: 'app-root',
@@ -7,4 +8,8 @@ import { Component } from '@angular/core';
 })
 export class AppComponent {
   title = 'priorites';
+
+  constructor(public pointsService: PointsService) { 
+    pointsService.addCategory("test");
+  }
 }
