@@ -1,6 +1,7 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, OnDestroy } from '@angular/core';
 import { PointsService } from '../services/points.service';
 import {trigger, state, style, animate, transition} from '@angular/animations';
+import { Subscription } from 'rxjs';
 
 @Component({
   selector: 'app-pbar',
@@ -15,23 +16,31 @@ import {trigger, state, style, animate, transition} from '@angular/animations';
     ])
   ]
 })
-export class PbarComponent implements OnInit {
+export class PbarComponent implements OnInit, OnDestroy {
   pointsMaxPercentage = "25";
   state = "green";
 
   pointsTotal: number;
+
+  private psub: Subscription = null;
 
   constructor(public pointsService: PointsService) { 
     this.pointsTotal = this.pointsService.total();
   }
 
   ngOnInit() {
-    this.pointsService.pointsTotalChanged$.subscribe(newTotal => {
+    this.psub = this.pointsService.pointsTotalChanged$.subscribe(newTotal => {
       this.pointsTotal = newTotal;
       this.state = (newTotal > this.maxPoints()) ? "red" : "green";
     });
   }
 
+  ngOnDestroy() {
+    if (this.psub) {
+      this.psub.unsubscribe();
+    }
+  }
+  
   maxPoints(): number {
     var numcats = this.pointsService.categories().length;
     return Math.ceil(numcats * parseInt(this.pointsMaxPercentage) * 5 / 100);
