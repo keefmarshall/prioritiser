@@ -9,8 +9,8 @@ import { Subscription } from 'rxjs';
   styleUrls: ['./pbar.component.css'],
   animations: [
     trigger('totalState', [
-      state('green', style({ backgroundColor: '#fff' })),
-      state('red',   style({ backgroundColor: '#ff6060' })),
+      state('green', style({ backgroundColor: '#fff', color: '#000' })),
+      state('red',   style({ backgroundColor: '#c00', color: '#fff' })),
       transition('green => red', animate('100ms ease-in')),
       transition('red => green', animate('100ms ease-out'))
     ])
@@ -40,7 +40,7 @@ export class PbarComponent implements OnInit, OnDestroy {
       this.psub.unsubscribe();
     }
   }
-  
+
   maxPoints(): number {
     var numcats = this.pointsService.categories().length;
     return Math.ceil(numcats * parseInt(this.pointsMaxPercentage) * 5 / 100);

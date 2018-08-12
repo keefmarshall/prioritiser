@@ -1,15 +1,20 @@
-<mat-form-field>
-  <mat-select 
-      placeholder="Size of project" 
-      [(value)]="pointsMaxPercentage"
-      (selectionChange)="projectSizeChanged($event)">
+<div>
 
-    <mat-option value="13">Tiny</mat-option>
-    <mat-option value="25" selected>Small</mat-option>
-    <mat-option value="50">Medium</mat-option>
-    <mat-option value="80">Large</mat-option>
-  </mat-select>
-</mat-form-field>
-<p [@totalState]="state">
-  Assigned points: {{ pointsService.total() }} / {{ maxPoints() }}
-</p>
+  <mat-form-field>
+    <mat-select 
+        placeholder="Size of project" 
+        [(value)]="pointsMaxPercentage"
+        (selectionChange)="projectSizeChanged($event)">
+
+      <mat-option value="13">Tiny</mat-option>
+      <mat-option value="25" selected>Small</mat-option>
+      <mat-option value="45">Medium</mat-option>
+      <mat-option value="80">Large</mat-option>
+    </mat-select>
+  </mat-form-field>
+
+  <p [@totalState]="state">
+    Assigned points: {{ pointsService.total() }} / {{ maxPoints() }}
+  </p>
+
+</div>
