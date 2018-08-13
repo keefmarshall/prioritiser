@@ -1,10 +1,12 @@
 import { Injectable } from '@angular/core';
 import { Subject } from 'rxjs';
+import { Category } from '../model/category';
 
 @Injectable({
   providedIn: 'root'
 })
 export class PointsService {
+  private categories: Category[] = [];
   private points: {[key: string]: number} = {};
   private totalPoints: number = 0;
 
@@ -22,12 +24,12 @@ export class PointsService {
   }
 
   private recalculateTotalPoints() {
-    var prev = this.totalPoints;
+    const prev = this.totalPoints;
     this.totalPoints = Object.values(this.points).reduce((sum, current) => {
       return sum + current;
     }, 0);
-    
-    if (prev != this.totalPoints) {
+
+    if (prev !== this.totalPoints) {
       this.pointsTotalChanged$.next(this.totalPoints);
     }
   }
@@ -36,18 +38,23 @@ export class PointsService {
     return this.totalPoints;
   }
 
-  categories(): string[] {
-    return Object.keys(this.points);
+  getCategories(): Category[] {
+    return this.categories;
   }
 
-  addCategory(cat: string) {
-    if (!this.points[cat]) {
-      this.points[cat] = 0;
+  addCategory(cat: Category) {
+    if (!this.points[cat.name]) {
+      this.points[cat.name] = 0;
     }
+    this.categories.push(cat);
   }
 
-  removeCategory(cat: string) {
-    delete this.points[cat];
+  removeCategory(cat: Category) {
+    delete this.points[cat.name];
+    const index = this.categories.indexOf(cat);
+    if (index >= 0) {
+      this.categories.splice(index, 1);
+    }
     this.recalculateTotalPoints();
   }
 

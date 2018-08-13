@@ -7,8 +7,8 @@
   <div fxFlex="65%">
     <mat-card>
       <table>
-        <tr *ngFor="let cat of pointsService.categories()">
-          <th>{{cat}}</th>
+        <tr *ngFor="let cat of pointsService.getCategories()">
+          <th [matTooltip]="cat.desc">{{cat.name}}</th>
           <td><app-pslider category="{{cat}}"></app-pslider></td>
         </tr>
       </table>

@@ -42,8 +42,8 @@ export class PbarComponent implements OnInit, OnDestroy {
   }
 
   maxPoints(): number {
-    var numcats = this.pointsService.categories().length;
-    return Math.ceil(numcats * parseInt(this.pointsMaxPercentage) * 5 / 100);
+    const numcats = this.pointsService.getCategories().length;
+    return Math.ceil(numcats * parseInt(this.pointsMaxPercentage, 10) * 5 / 100);
   }
 
   projectSizeChanged($event) {
