@@ -9,16 +9,21 @@ import { Subscription } from 'rxjs';
   styleUrls: ['./pbar.component.css'],
   animations: [
     trigger('totalState', [
-      state('green', style({ backgroundColor: '#fff', color: '#000' })),
+      state('yellow', style({ backgroundColor: '#ffa', color: '#000' })),
+      state('green', style({ backgroundColor: '#9f9', color: '#000' })),
       state('red',   style({ backgroundColor: '#c00', color: '#fff' })),
       transition('green => red', animate('100ms ease-in')),
-      transition('red => green', animate('100ms ease-out'))
+      transition('red => green', animate('100ms ease-out')),
+      transition('yellow => red', animate('100ms ease-in')),
+      transition('red => yellow', animate('100ms ease-out')),
+      transition('yellow => green', animate('100ms ease-in')),
+      transition('green => yellow', animate('100ms ease-out'))
     ])
   ]
 })
 export class PbarComponent implements OnInit, OnDestroy {
   pointsMaxPercentage = "25";
-  state = "green";
+  state = "yellow";
 
   pointsTotal: number;
 
@@ -31,7 +36,7 @@ export class PbarComponent implements OnInit, OnDestroy {
   ngOnInit() {
     this.psub = this.pointsService.pointsTotalChanged$.subscribe(newTotal => {
       this.pointsTotal = newTotal;
-      this.state = (newTotal > this.maxPoints()) ? "red" : "green";
+      this.setStateFromPoints();
     });
   }
 
@@ -41,12 +46,24 @@ export class PbarComponent implements OnInit, OnDestroy {
     }
   }
 
+  setStateFromPoints() {
+    const diff = this.pointsTotal - this.maxPoints();
+    if (diff > 0) {
+      this.state = "red";
+    } else if (diff > -2) {
+      this.state = "green";
+    } else {
+      this.state = "yellow";
+    }
+
+  }
+
   maxPoints(): number {
     const numcats = this.pointsService.getCategories().length;
     return Math.ceil(numcats * parseInt(this.pointsMaxPercentage, 10) * 5 / 100);
   }
 
   projectSizeChanged($event) {
-    this.state = (this.pointsTotal > this.maxPoints()) ? "red" : "green";
+    this.setStateFromPoints();
   }
 }
