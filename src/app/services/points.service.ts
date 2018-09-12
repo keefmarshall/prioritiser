@@ -61,7 +61,9 @@ export class PointsService {
   prioritised(n: number = 5): string[] {
     return this.sorted((a, b) => {
       return b[1] - a[1]; // sort descending
-    }, n);
+    }, n)
+      .filter(catname => this.points[catname] > 0) // don't show zero-point entries
+    ;
   }
 
   deprioritised(n: number = 5): string[] {
