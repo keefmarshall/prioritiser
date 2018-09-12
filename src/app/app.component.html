@@ -9,7 +9,7 @@
       <table>
         <tr *ngFor="let cat of pointsService.getCategories()">
           <th [matTooltip]="cat.desc">{{cat.name}}</th>
-          <td><app-pslider category="{{cat}}"></app-pslider></td>
+          <td><app-pslider [category]="cat"></app-pslider></td>
         </tr>
       </table>
     </mat-card>

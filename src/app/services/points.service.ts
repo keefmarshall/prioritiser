@@ -66,7 +66,7 @@ export class PointsService {
 
   deprioritised(n: number = 5): string[] {
     return this.sorted((a, b) => {
-      return a[1] - b[1]; // sort descending
+      return a[1] - b[1]; // sort ascending
     }, n);
   }
 

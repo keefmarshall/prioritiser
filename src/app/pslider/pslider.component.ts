@@ -1,5 +1,6 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { PointsService } from '../services/points.service';
+import { Category } from '../model/category';
 
 @Component({
   selector: 'app-pslider',
@@ -7,7 +8,7 @@ import { PointsService } from '../services/points.service';
   styleUrls: ['./pslider.component.css']
 })
 export class PsliderComponent implements OnInit {
-  @Input() category: string;
+  @Input() category: Category;
 
   constructor(public pointsService: PointsService) { }
 
@@ -15,6 +16,6 @@ export class PsliderComponent implements OnInit {
   }
 
   valueChange(event: any) {
-    this.pointsService.setPoints(this.category, event.value);
+    this.pointsService.setPoints(this.category.name, event.value);
   }
 }

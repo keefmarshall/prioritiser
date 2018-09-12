@@ -13,6 +13,10 @@ export class AppComponent {
   private all_categories: Category[] = [
     { name: "Stability", desc: "Fewer bugs and incorrect behaviours" },
     { name: "Scalability", desc: "Ready to handle many users/sessions without loss of performance"},
+    {
+      name: "High Availability",
+      desc: "Will you lose money if the service is down for 5 minutes at 3am?"
+    },
     { name: "Performance / Speed", desc: "Responds / loads quickly" },
     { name: "Polished look and feel", desc: "Professional design" },
     { name: "User experience", desc: "Easy to use, intuitive flows" },
@@ -21,7 +25,7 @@ export class AppComponent {
     { name: "Security", desc: "Application security and network security - you need some, but how much resource will you commit?" },
     { name: "Accessibility", desc: "Can people with disabilities use your app?" },
     {
-      name: "Avoiding vendor lock-in", 
+      name: "Avoiding vendor lock-in",
       desc: "Some commercial software offers major benefits, but are you prepared to commit to always using them?"
     },
     { name: "White-label branding", desc: "Are you selling this as a service to clients, who may want their own brand?" },
