@@ -7,7 +7,7 @@ import { Category } from '../model/category';
 })
 export class PointsService {
   private categories: Category[] = [];
-  private points: {[key: string]: number} = {};
+  public points: {[key: string]: number} = {};
   private totalPoints: number = 0;
 
   pointsTotalChanged$ = new Subject<number>();
@@ -72,7 +72,7 @@ export class PointsService {
     }, n);
   }
 
-  private sorted(sortFunction: (a,b) => number, n = 5): string[] {
+  private sorted(sortFunction: (a, b) => number, n = 5): string[] {
     // https://stackoverflow.com/a/44109065/1271901
     return Array
       .from(Object.entries(this.points)) // ES 2017, may need polyfill

@@ -37,6 +37,6 @@ export class AppComponent {
   constructor(public pointsService: PointsService) {
     this.all_categories.forEach(cat =>
       this.pointsService.addCategory(cat)
-    )
+    );
   }
 }
