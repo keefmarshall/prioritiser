@@ -4,8 +4,10 @@
 
 There are issues with 'fsevents' when first installing - I have managed to get it to work on a fresh machine with:
 
+```
 npm install fsevents
-mpn install --build-from-resource
+npm install --build-from-resource
+```
 
 This nay be Mac-specific.
 
