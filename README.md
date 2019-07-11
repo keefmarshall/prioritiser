@@ -1,5 +1,16 @@
 # Priorites
 
+## Installation notes
+
+There are issues with 'fsevents' when first installing - I have managed to get it to work on a fresh machine with:
+
+npm install fsevents
+mpn install --build-from-resource
+
+This nay be Mac-specific.
+
+------
+
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 6.1.2.
 
 ## Development server
